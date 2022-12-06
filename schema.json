@@ -38,7 +38,7 @@
           },
           {
             "type": "text",
-            "label": "autoStartDependentField",
+            "label": "Auto-Start Dependent Field",
             "key": "autoStartField",
             "defaultValue": true,
             "dependsOn": "autoStart"
