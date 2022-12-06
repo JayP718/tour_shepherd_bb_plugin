@@ -2,58 +2,82 @@
   "type": "component",
   "metadata": {},
   "schema": {
-    "name": "helpme",
-    "friendlyName": "helpme",
+    "name": "tour_shepherd",
+    "friendlyName": "Tour",
     "description": "A component that allows you to create dynamic walkthroughs",
-    "icon": "Text",
+    "icon": "HelpOutline",
     "settings": [
       {
         "type": "text",
         "key": "tourName",
-        "label": "Shepherd Tour Name"
-      },
-      {
-        "type": "boolean",
-        "label": "Modal Overlay",
-        "key": "useModalOverlay",
-        "defaultValue": true
-      },
-      {
-        "type": "boolean",
-        "label": "Auto-Start on Load",
-        "key": "autoStart",
-        "defaultValue": true
+        "label": "Shepherd Tour Name",
+        "defaultValue": "tourName1",
+        "required": true
       },
       {
         "type": "text",
-        "label": "autoStartDependentField",
-        "key": "autoStartField",
-        "defaultValue": true,
-        "dependsOn":"autoStart"
+        "key": "tourSteps",
+        "label": "Tour Steps - Use GUI to Populate",
+        "required": true
       },
       {
-        "type": "boolean",
-        "label": "Confirm Cancel dialog",
-        "key": "confirmCancel",
-        "defaultValue": true
-      },
-      {
-        "type": "text",
-        "key": "confirmCancelMessage",
-        "label": "Confirm Cancel Message",
-        "dependsOn": "confirmCancel"
-      },
-      {
-        "type": "boolean",
-        "label": "Exit On Escape",
-        "key": "exitOnEsc",
-        "defaultValue": true
-      },
-      {
-        "type": "boolean",
-        "label": "Keyboard Navigation",
-        "key": "keyboardNavigation",
-        "defaultValue": true
+        "section": true,
+        "name": "Advanced Customization",
+        "settings": [
+          {
+            "type": "boolean",
+            "label": "Modal Overlay",
+            "key": "useModalOverlay",
+            "defaultValue": true
+          },
+          {
+            "type": "boolean",
+            "label": "Auto-Start on Load",
+            "key": "autoStart",
+            "defaultValue": true
+          },
+          {
+            "type": "text",
+            "label": "autoStartDependentField",
+            "key": "autoStartField",
+            "defaultValue": true,
+            "dependsOn": "autoStart"
+          },
+          {
+            "type": "boolean",
+            "label": "Confirm Cancel dialog",
+            "key": "confirmCancel",
+            "defaultValue": true
+          },
+          {
+            "type": "text",
+            "key": "confirmCancelMessage",
+            "label": "Confirm Cancel Message",
+            "dependsOn": "confirmCancel"
+          },
+          {
+            "type": "boolean",
+            "label": "Exit On Escape",
+            "key": "exitOnEsc",
+            "defaultValue": true
+          },
+          {
+            "type": "boolean",
+            "label": "Keyboard Navigation",
+            "key": "keyboardNavigation",
+            "defaultValue": true
+          },
+          {
+            "type": "event",
+            "key": "onCompletion",
+            "label": "On Completion"
+          },
+          {
+            "type": "event",
+            "key": "onCancel",
+            "label": "On Cancel"
+          }
+        ]
       }
     ]
   }
