@@ -57,7 +57,9 @@ Follow instructions [here](https://docs.budibase.com/docs/custom-plugin#:~:text=
 |Shows Arrow|Shows arrow|
 |Modal Step|If step leads to modal to be opened this should be true. This allows the user to continue to tour upon closing the modal and allows modals to have their own tours.|
 
-6) Test and enjoy your tour!
+6) Click refresh tour within the builder to update your steps. This automatically edits the tour step settings.
+
+7) Test and enjoy your tour!
 
 ![](assets/tour_demo_1.png)![](assets/tour_demo_2.png)
 
