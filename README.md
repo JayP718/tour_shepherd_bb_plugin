@@ -1,10 +1,11 @@
 
-# Description
-A component that allows you to create dynamic walkthroughs based off of [Shepherd by Ship Shape] (https://github.com/shipshapecode/shepherd). This is part of a pair plugin meaning you must install the companion plugin [Tour Step](https://github.com/JayP718/tour_step_bb_plugin) here (as every shepherd needs it's sheep :) )).
+
+
+A component that allows you to create dynamic walkthroughs based off of [Shepherd by Ship Shape] (https://github.com/shipshapecode/shepherd). This plugin is part of a ste, meaning you must install the companion plugin [Tour Step](https://github.com/JayP718/tour_step_bb_plugin) here (as every shepherd needs it's sheep :) )).
 
 
 
-Find out more about [Budibase](https://github.com/Budibase/budibase).
+Find out more about [Budibase here](https://github.com/Budibase/budibase).
 
 ## Instructions
 
@@ -56,3 +57,11 @@ Follow instructions [here](https://docs.budibase.com/docs/custom-plugin#:~:text=
 |Shows Arrow|Shows arrow|
 |Modal Step|If step leads to modal to be opened this should be true. This allows the user to continue to tour upon closing the modal and allows modals to have their own tours.|
 
+6) Test and enjoy your tour!
+
+![](assets/tour_demo_1.png)![](assets/tour_demo_2.png)
+
+![](assets/tour_demo_3.png)![](assets/tour_demo_4.png)
+#HELP NEEDED
+
+Steps which lead to modals to be opened is still a little janky. If anyone has any hints to identify if modal is closed please reach out!
