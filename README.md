@@ -62,6 +62,6 @@ Follow instructions [here](https://docs.budibase.com/docs/custom-plugin#:~:text=
 ![](assets/tour_demo_1.png)![](assets/tour_demo_2.png)
 
 ![](assets/tour_demo_3.png)![](assets/tour_demo_4.png)
-#HELP NEEDED
+# HELP NEEDED
 
-Steps which lead to modals to be opened is still a little janky. If anyone has any hints to identify if modal is closed please reach out!
+Steps which lead to modals to be opened is still a little janky. If anyone has any hints to identify and fire an event if modal is closed please reach out!
