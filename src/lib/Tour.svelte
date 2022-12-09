@@ -1,7 +1,5 @@
-
-
 <script>
-  import { tick, onMount, getContext } from "svelte";
+  import { tick, onMount, getContext, beforeUpdate, afterUpdate } from "svelte";
   import "shepherd.js/dist/css/shepherd.css";
   import Shepherd from "shepherd.js/dist/js/shepherd.min.js";
   import Button from "../../node_modules/@budibase/bbui/src/Button/Button.svelte";
@@ -23,8 +21,6 @@
   export let inBuilder;
   const { styleable, builderStore, API } = getContext("sdk");
   const component = getContext("component");
-
-
 
   $: tour = new Shepherd.Tour({
     tourName: tourName,
@@ -79,25 +75,6 @@
         );
       }
 
-      if (tourStepsArray[i].modalStepFlag) {
-
-
-        tourStepsArray[i].when = {
-          show: function () {
-            document
-              .querySelector(".modal-inner-wrapper")
-              .addEventListener("mousedown", function () {
-                tour.next();
-              });
-          },
-        };
-
-          tourStepsArray[i].beforeShowPromise	= async function () {
-            return await tick()
-          }
-        
-      }
-
       tour.addStep(tourStepsArray[i], tourStepsArray.ranking);
     }
   }
@@ -122,19 +99,20 @@
       id: componentStep._id,
       text: componentStep.text,
       title: componentStep.title,
-      cancelIcon: {enabled: componentStep.cancelIcon, label:"Cancel"},
+      cancelIcon: { enabled: componentStep.cancelIcon, label: "Cancel" },
       attachTo: {
         element: componentStep.modalStepFlag
           ? ":not(.spectrum-Dialog)"
           : "#" + componentStep._id,
         on: componentStep.popposition,
       },
-      canClickTarget: componentStep.canClickTarget
+      canClickTarget: componentStep.canClickTarget,
     };
     if (
       componentStep.advanceOn &&
       componentStep.eventTrigger &&
-      componentStep.selector
+      componentStep.selector &&
+      !componentStep.modalStepFlag // next step should only advance if this flag is false
     ) {
       newStep.advanceOn = {
         selector: componentStep.selector,
@@ -204,8 +182,28 @@
   }
 
   function checkActiveTour() {
-    console.log(Shepherd.activeTour)
+    console.log(Shepherd.activeTour);
   }
+
+  Shepherd.on("show", (e) => {
+    if (e.step.options.modalStepFlag) {
+      const targetNode = document.getElementsByClassName("modal-container")[0].firstChild.firstChild;
+      console.log(targetNode);
+      const config = { childList:true};
+
+      const callback = (mutationList, observer) => {
+        for (const mutation of mutationList) {
+          if (mutation.removedNodes[0].classList.contains("is-open")) {
+            tour.next()
+            observer.disconnect()
+          }
+        }
+
+      };
+      const observer = new MutationObserver(callback);
+      observer.observe(targetNode, config);
+    }
+  });
 </script>
 
 <div use:styleable={$component.styles}>
@@ -214,9 +212,7 @@
   {:else}
     <Button cta on:click={startTour}>Start Tour</Button>
     {#if inBuilder}
-      <Button cta on:click={refreshTour}>
-        Refresh Tour
-      </Button>
+      <Button cta on:click={refreshTour}>Refresh Tour</Button>
     {/if}
   {/if}
 </div>

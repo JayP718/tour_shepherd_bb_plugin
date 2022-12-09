@@ -42,7 +42,7 @@ Follow instructions [here](https://docs.budibase.com/docs/custom-plugin#:~:text=
 
 |Settings | Description |
 |------------- | ------------- |
-|Tour Name|This must match the tour in which you want the tour step to appear for. |
+|Tour Name|This MUST MATCH the tour in which you want the tour step to appear for. |
 |Title|This is the title of the tour step which appears at the top of the step.|
 |Text|This is the text of the tour step which appears within the step. (Accepts HTML Markup) |
 |Ranking|IMPORTANT must be unique for that tour. Must also be greater than 0|
@@ -64,6 +64,3 @@ Follow instructions [here](https://docs.budibase.com/docs/custom-plugin#:~:text=
 ![](assets/tour_demo_1.png)![](assets/tour_demo_2.png)
 
 ![](assets/tour_demo_3.png)![](assets/tour_demo_4.png)
-# HELP NEEDED
-
-Steps which lead to modals to be opened is still a little janky. If anyone has any hints to identify and fire an event if modal is closed please reach out!
