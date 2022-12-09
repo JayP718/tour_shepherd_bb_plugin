@@ -74,8 +74,27 @@
           tourStepsArray[i].buttons_booleans
         );
       }
+      (tourStepsArray[i].beforeShowPromise = function () {
+        return new Promise((resolve) => {
+          let selector = tourStepsArray[i].attachTo.element
+          if (document.querySelector(selector)) {
+            return resolve(document.querySelector(selector));
+          }
 
-      tour.addStep(tourStepsArray[i], tourStepsArray.ranking);
+          const observer = new MutationObserver((mutations) => {
+            if (document.querySelector(selector)) {
+              resolve(document.querySelector(selector));
+              observer.disconnect();
+            }
+          });
+
+          observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+          });
+        });
+      }),
+        tour.addStep(tourStepsArray[i], tourStepsArray.ranking);
     }
   }
 
@@ -187,18 +206,19 @@
 
   Shepherd.on("show", (e) => {
     if (e.step.options.modalStepFlag) {
-      const targetNode = document.getElementsByClassName("modal-container")[0].firstChild.firstChild;
+      const targetNode =
+        document.getElementsByClassName("modal-container")[0].firstChild
+          .firstChild;
       console.log(targetNode);
-      const config = { childList:true};
+      const config = { childList: true };
 
       const callback = (mutationList, observer) => {
         for (const mutation of mutationList) {
           if (mutation.removedNodes[0].classList.contains("is-open")) {
-            tour.next()
-            observer.disconnect()
+            tour.next();
+            observer.disconnect();
           }
         }
-
       };
       const observer = new MutationObserver(callback);
       observer.observe(targetNode, config);
