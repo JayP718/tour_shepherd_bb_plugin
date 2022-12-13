@@ -1,5 +1,5 @@
 <script>
-  import { tick, onMount, getContext, beforeUpdate, afterUpdate } from "svelte";
+  import { tick, onMount, getContext } from "svelte";
   import "shepherd.js/dist/css/shepherd.css";
   import Shepherd from "shepherd.js/dist/js/shepherd.min.js";
   import Button from "../../node_modules/@budibase/bbui/src/Button/Button.svelte";
@@ -113,7 +113,7 @@
       ],
       modalStepFlag: componentStep.modalStepFlag,
       modalCloseEvent: componentStep.modalCloseEvent,
-
+ 
       //anything above here is only used to for additional data to sort and set buttons etc
       id: componentStep._id,
       text: componentStep.text,
@@ -122,7 +122,7 @@
       attachTo: {
         element: componentStep.modalStepFlag
           ? ":not(.spectrum-Dialog)"
-          : "#" + componentStep._id,
+          : componentStep.attachToOverride ?? "#" + componentStep._id,
         on: componentStep.popposition,
       },
       canClickTarget: componentStep.canClickTarget,
@@ -143,7 +143,7 @@
 
   function findAllByKey(obj, array) {
     for (const each in obj) {
-      obj[each].tourName == tourName &&
+      obj[each].tourName?.split(',').includes(tourName) &&
       obj[each]._component == "plugin/tourstep" &&
       obj[each].ranking > 0
         ? typeof array[obj[each].ranking] === "undefined"
